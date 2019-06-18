@@ -1,0 +1,44 @@
+== BladeLogic_Command_Run_V1
+    Uses the BladeLogic web services to run a CLI Command on a BladeLogic App 
+    Server.
+
+=== Parameters
+    [Name Space]
+        The name space of the CLI command.
+    [Command Name]
+        The name of the CLI command.
+    [Command Argument 1]
+        Command argument 1.
+    [Command Argument 2]
+        Command argument 2.
+    [Command Argument 3]
+        Command argument 3.
+    [Command Argument 4]
+        Command argument 4.
+    [Command Argument 5]
+        Command argument 5.
+
+=== Results
+    [CLI Response]
+      This returns the response string from the CLI command.
+
+==== Sample Configuration
+    Name Space:                  NSHScriptJob
+    Command Name:                getDBKeyByGroupAndName
+    Command Argument 1:          /Task Jobs
+    Command Argument 2:          Sample_Script
+    Command Argument 3:          
+    Command Argument 4:          
+    Command Argument 5:          
+
+=== Detailed Description
+    This handler uses the BMC BladeLogic web services to run a CLI Command on
+    a BladeLogic App Server using SOAP calls. After authenticating with username,
+    password, and app server location, the handler starts making SOAP calls to 
+    configure the CLI tunnel. It starts by making a login call with the
+    BladeLogic username and password. It then takes the session id from the
+    response (to help authenticate all future requests) and then assumes the
+    role that was specified in the info values. After all the authentication is
+    finished, the CLI command is sent with the name space, command name, and any
+    non-empty arguments. Finally the response string from the command will be 
+    returned from the SOAP response.

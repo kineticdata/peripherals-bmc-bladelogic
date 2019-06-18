@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<taskInfo version="1.0">
+    <info name="server_username" description="The username of an account on the server that the BladeLogic app server resides on."></info>
+    <info name="server_password" type="encrypted" description="The password of an account on the server that the BladeLogic app server resides on."></info>
+    <info name="server_domain" description="The domain of an account on the server that the BladeLogic app server resides on."></info>
+    <info name="bladelogic_username" description="The username of a BladeLogic account that can run the proper CLI commands."></info>
+    <info name="bladelogic_password" type="encrypted" description="The password of a BladeLogic account that can run the proper CLI commands."></info>
+    <info name="bladelogic_role" description="The role that the BladeLogic account will assume to run the proper CLI commands."></info>
+    <info name="app_server" description="The location of the BladeLogic App Server that commands will be run against."></info>
+    <info name="self-signed_cert" description="If the Certificate that you are using for verification is self-signed, then input 'true'. If it is not, input 'false'."></info>
+    <info name="enable_debug_logging" description="Enable debug logging if the value is set to 'Yes'.">No</info>
+</taskInfo>

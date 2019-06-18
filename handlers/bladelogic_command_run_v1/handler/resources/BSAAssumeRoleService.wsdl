@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://bladelogic.com/2009/11/30" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:assumeRoleServiceNamespace="http://bladelogic.com/webservices/skeleton/assumerole" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:bladelogicNamespace="http://bladelogic.com/2009/11/30" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:frameworkNamespace="http://bladelogic.com/webservices/framework/xsd">
+<wsdl:documentation>
+  assumeRoleServiceNamspace: The namespace for the assumeRoleService, which contains assumeRole-specific elements.
+  bladelogicNamespace: The namespace that contains messages, bindings and SoapActions.
+  frameworkNamspace: The namespace for elements used by multiple services, such as generic exceptions.
+  wsdl: The WSDL namespace.
+  soap: The SOAP namespace.
+  xs: The XMLSchema namespace.
+  </wsdl:documentation>
+  <wsdl:types>
+    <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://bladelogic.com/webservices/skeleton/assumerole">
+			<xs:import namespace="http://bladelogic.com/webservices/framework/xsd"/>
+			<xs:element name="SessionCredentialExpiredException">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="SessionCredentialExpiredException" nillable="true" type="frameworkNamespace:SessionCredentialExpiredException"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="SessionRejectedException">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="SessionRejectedException" nillable="true" type="frameworkNamespace:SessionRejectedException"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="assumeRole">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="roleName" nillable="true" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="assumeRoleResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="return" nillable="true" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:schema>
+    <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://bladelogic.com/webservices/framework/xsd">
+			<xs:complexType name="Exception">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="Exception" nillable="true" type="xs:anyType"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="BaseException">
+				<xs:complexContent>
+					<xs:extension base="frameworkNamespace:Exception">
+						<xs:sequence/>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:complexType name="BlException">
+				<xs:complexContent>
+					<xs:extension base="frameworkNamespace:BaseException">
+						<xs:sequence>
+							<xs:element minOccurs="0" name="localizedMessage" nillable="true" type="xs:string"/>
+						</xs:sequence>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:complexType name="SessionLoginException">
+				<xs:complexContent>
+					<xs:extension base="frameworkNamespace:BlException">
+						<xs:sequence/>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:complexType name="SessionCredentialExpiredException">
+				<xs:complexContent>
+					<xs:extension base="frameworkNamespace:SessionLoginException">
+						<xs:sequence/>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:complexType name="SessionRejectedException">
+				<xs:complexContent>
+					<xs:extension base="frameworkNamespace:SessionLoginException">
+						<xs:sequence/>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:element name="sessionId" type="xs:string"/>
+			<xs:element name="transactionId" type="xs:string"/>
+		</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="assumeRoleRequest">
+    <wsdl:part name="parameters" element="assumeRoleServiceNamespace:assumeRole">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sessionId">
+    <wsdl:part name="parameters" element="frameworkNamespace:sessionId">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="transactionId">
+    <wsdl:part name="parameters1" element="frameworkNamespace:transactionId">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="SessionRejectedException">
+    <wsdl:part name="parameters" element="assumeRoleServiceNamespace:SessionRejectedException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="SessionCredentialExpiredException">
+    <wsdl:part name="parameters" element="assumeRoleServiceNamespace:SessionCredentialExpiredException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="assumeRoleResponse">
+    <wsdl:part name="parameters" element="assumeRoleServiceNamespace:assumeRoleResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="AssumeRoleServicePortType">
+    <wsdl:operation name="assumeRole">
+      <wsdl:input message="bladelogicNamespace:assumeRoleRequest">
+    </wsdl:input>
+      <wsdl:output message="bladelogicNamespace:assumeRoleResponse">
+    </wsdl:output>
+      <wsdl:fault name="SessionRejectedException" message="bladelogicNamespace:SessionRejectedException">
+    </wsdl:fault>
+      <wsdl:fault name="SessionCredentialExpiredException" message="bladelogicNamespace:SessionCredentialExpiredException">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AssumeRoleServiceSoap11Binding" type="bladelogicNamespace:AssumeRoleServicePortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="assumeRole">
+      <soap:operation soapAction="bladelogicNamespace:assumeRole" style="document"/>
+      <wsdl:input>
+        <soap:header message="bladelogicNamespace:sessionId" part="parameters" use="literal" namespace="bladelogic">
+        </soap:header>
+        <soap:header message="bladelogicNamespace:transactionId" part="parameters1" use="literal" namespace="bladelogic">
+        </soap:header>
+	<soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SessionRejectedException">
+        <soap:fault name="SessionRejectedException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="SessionCredentialExpiredException">
+        <soap:fault name="SessionCredentialExpiredException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AssumeRoleService">
+    <wsdl:port name="AssumeRoleServiceHttpSoap11Endpoint" binding="bladelogicNamespace:AssumeRoleServiceSoap11Binding">
+      <soap:address location="https://10.20.12.91:9843/services/AssumeRoleService/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

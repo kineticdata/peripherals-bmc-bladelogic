@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://bladelogic.com/2009/11/30" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:bladelogicNamespace="http://bladelogic.com/2009/11/30" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:frameworkNamespace="http://bladelogic.com/webservices/framework/xsd" xmlns:loginServiceNamespace="http://bladelogic.com/webservices/skeleton/login">
+<wsdl:documentation>
+  loginServiceNamspace: The namespace for the loginService, which contains login-specific elements.
+  bladelogicNamespace: The namespace that contains messages, bindings and SoapActions.
+  frameworkNamspace: The namespace for elements used by multiple services, such as generic exceptions.
+  wsdl: The WSDL namespace.
+  soap: The SOAP namespace.
+  xs: The XMLSchema namespace.
+  </wsdl:documentation>
+  <wsdl:types>
+    <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://bladelogic.com/webservices/skeleton/login">
+			<xs:import namespace="http://bladelogic.com/webservices/framework/xsd"/>
+			<xs:element name="SessionCredentialExpiredException">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="SessionCredentialExpiredException" nillable="true" type="frameworkNamespace:SessionCredentialExpiredException"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="SessionRejectedException">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="SessionRejectedException" nillable="true" type="frameworkNamespace:SessionRejectedException"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="loginUsingSessionCredential">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="ws_sessionCredential" nillable="true" type="frameworkNamespace:WS_SSOSessionCredential"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="loginUsingSessionCredentialResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="return" nillable="true" type="frameworkNamespace:WS_SSOSessionCredential"/>
+						<xs:element minOccurs="0" name="returnSessionId" nillable="true" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="loginUsingUserCredential">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="userName" nillable="true" type="xs:string"/>
+						<xs:element minOccurs="0" name="password" nillable="true" type="xs:string"/>
+						<xs:element minOccurs="0" name="authenticationType" nillable="true" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="loginUsingUserCredentialResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="return" nillable="true" type="frameworkNamespace:WS_SSOSessionCredential"/>
+						<xs:element minOccurs="0" name="returnSessionId" nillable="true" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:schema>
+    <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://bladelogic.com/webservices/framework/xsd">
+			<xs:import namespace="http://bladelogic.com/webservices/skeleton/login"/>
+			<xs:complexType name="Exception">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="Exception" nillable="true" type="xs:anyType"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="BaseException">
+				<xs:complexContent>
+					<xs:extension base="frameworkNamespace:Exception">
+						<xs:sequence/>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:complexType name="BlException">
+				<xs:complexContent>
+					<xs:extension base="frameworkNamespace:BaseException">
+						<xs:sequence>
+							<xs:element minOccurs="0" name="localizedMessage" nillable="true" type="xs:string"/>
+						</xs:sequence>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:complexType name="WS_SSOSessionCredential">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="authType" nillable="true" type="xs:string"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="authorizedRoles" nillable="true" type="frameworkNamespace:WSRoleId"/>
+					<xs:element minOccurs="0" name="clientAddress" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="expirationTime" nillable="true" type="xs:dateTime"/>
+					<xs:element minOccurs="0" name="maximumLifeTime" nillable="true" type="xs:dateTime"/>
+					<xs:element minOccurs="0" name="rolePreference" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="serviceTicketString" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="serviceUrl" nillable="true" type="xs:string"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="serviceUrls" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="site" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="updateSRPPasswordOnly" type="xs:boolean"/>
+					<xs:element minOccurs="0" name="userName" nillable="true" type="xs:string"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="webServicesUrls" nillable="true" type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="WSRoleId">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="id" nillable="true" type="xs:int"/>
+					<xs:element minOccurs="0" name="name" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="roleId" type="xs:int"/>
+					<xs:element minOccurs="0" name="roleName" nillable="true" type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="SessionLoginException">
+				<xs:complexContent>
+					<xs:extension base="frameworkNamespace:BlException">
+						<xs:sequence/>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:complexType name="SessionCredentialExpiredException">
+				<xs:complexContent>
+					<xs:extension base="frameworkNamespace:SessionLoginException">
+						<xs:sequence/>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:complexType name="SessionRejectedException">
+				<xs:complexContent>
+					<xs:extension base="frameworkNamespace:SessionLoginException">
+						<xs:sequence/>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:element name="transactionId" type="xs:string"/>		
+		</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="loginUsingSessionCredentialResponse">
+    <wsdl:part name="parameters" element="loginServiceNamespace:loginUsingSessionCredentialResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="loginUsingSessionCredentialRequest">
+    <wsdl:part name="parameters" element="loginServiceNamespace:loginUsingSessionCredential">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="loginUsingUserCredentialRequest">
+    <wsdl:part name="parameters" element="loginServiceNamespace:loginUsingUserCredential">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="loginUsingUserCredentialResponse">
+    <wsdl:part name="parameters" element="loginServiceNamespace:loginUsingUserCredentialResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="SessionRejectedException">
+    <wsdl:part name="parameters" element="loginServiceNamespace:SessionRejectedException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="transactionId">
+    <wsdl:part name="parameters1" element="frameworkNamespace:transactionId"/>
+  </wsdl:message>
+  <wsdl:message name="SessionCredentialExpiredException">
+    <wsdl:part name="parameters" element="loginServiceNamespace:SessionCredentialExpiredException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="LoginServicePortType">
+    <wsdl:operation name="loginUsingSessionCredential">
+      <wsdl:input message="bladelogicNamespace:loginUsingSessionCredentialRequest">
+    </wsdl:input>
+      <wsdl:output message="bladelogicNamespace:loginUsingSessionCredentialResponse">
+    </wsdl:output>
+      <wsdl:fault name="SessionRejectedException" message="bladelogicNamespace:SessionRejectedException">
+    </wsdl:fault>
+      <wsdl:fault name="SessionCredentialExpiredException" message="bladelogicNamespace:SessionCredentialExpiredException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="loginUsingUserCredential">
+      <wsdl:input message="bladelogicNamespace:loginUsingUserCredentialRequest">
+    </wsdl:input>
+      <wsdl:output message="bladelogicNamespace:loginUsingUserCredentialResponse">
+    </wsdl:output>
+      <wsdl:fault name="SessionRejectedException" message="bladelogicNamespace:SessionRejectedException">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="LoginServiceSoap11Binding" type="bladelogicNamespace:LoginServicePortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="loginUsingSessionCredential">
+      <soap:operation soapAction="bladelogicNamespace:loginUsingSessionCredential" style="document"/>
+      <wsdl:input>
+	<soap:header message="bladelogicNamespace:transactionId" part="parameters1" use="literal" namespace="bladelogic"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SessionRejectedException">
+        <soap:fault name="SessionRejectedException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="SessionCredentialExpiredException">
+        <soap:fault name="SessionCredentialExpiredException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="loginUsingUserCredential">
+      <soap:operation soapAction="bladelogicNamespace:loginUsingUserCredential" style="document"/>
+      <wsdl:input>
+	<soap:header message="bladelogicNamespace:transactionId" part="parameters1" use="literal" namespace="bladelogic"/>
+	<soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SessionRejectedException">
+        <soap:fault name="SessionRejectedException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="LoginService">
+    <wsdl:port name="LoginServiceHttpSoap11Endpoint" binding="bladelogicNamespace:LoginServiceSoap11Binding">
+      <soap:address location="https://10.20.12.91:9843/services/LoginService/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

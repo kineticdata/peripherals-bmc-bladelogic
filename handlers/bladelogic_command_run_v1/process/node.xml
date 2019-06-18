@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taskDefinition id="bladelogic_command_run" name="BladeLogic Command Run" schema_version="1.0" version="1">
+    <author>support@kineticdata.com</author>
+    <description>This handler runs a command on a bladelogic server.</description>
+    <helpurl>http://ktc.kineticdata.com/handler/bladelogic_command_run/1</helpurl>
+    <visible>true</visible>
+    <deferrable>false</deferrable>
+    <parameters>
+        <parameter id="name_space" label="Name Space" required="true"
+            tooltip="The name space of the CLI command."/>
+        <parameter id="command_name" label="Command Name" required="true"
+            tooltip="The name of the CLI command."/>
+        <parameter id="command_argument_1" label="Command Argument 1" required="false"
+            tooltip="Command Argument 1."/>
+        <parameter id="command_argument_2" label="Command Argument 2" required="false"
+            tooltip="Command Argument 2."/>
+        <parameter id="command_argument_3" label="Command Argument 3" required="false"
+            tooltip="Command Argument 3."/>
+        <parameter id="command_argument_4" label="Command Argument 4" required="false"
+            tooltip="Command Argument 4."/>
+        <parameter id="command_argument_5" label="Command Argument 5" required="false"
+            tooltip="Command Argument 5."/>
+    </parameters>
+    <handler name="bladelogic_command_run" version="1">
+        <infos>
+            <info name="server_username">&lt;%= @info['server_username'] %&gt;</info>
+            <info name="server_password">&lt;%= @info['server_password'] %&gt;</info>
+            <info name="server_domain">&lt;%= @info['server_domain'] %&gt;</info>
+            <info name="bladelogic_username">&lt;%= @info['bladelogic_username'] %&gt;</info>
+            <info name="bladelogic_password">&lt;%= @info['bladelogic_password'] %&gt;</info>
+            <info name="bladelogic_role">&lt;%= @info['bladelogic_role'] %&gt;</info>
+            <info name="app_server">&lt;%= @info['app_server'] %&gt;</info>
+            <info name="self-signed_cert">&lt;%= @info['self-signed_cert'] %&gt;</info>
+            <info name="enable_debug_logging">&lt;%= @info['enable_debug_logging'] %&gt;</info>
+        </infos>
+        <parameters>
+            <parameter name="name_space">&lt;%= @parameters['name_space'] %&gt;</parameter>
+            <parameter name="command_name">&lt;%= @parameters['command_name'] %&gt;</parameter>
+            <parameter name="command_argument_1">&lt;%= @parameters['command_argument_1'] %&gt;</parameter>
+            <parameter name="command_argument_2">&lt;%= @parameters['command_argument_2'] %&gt;</parameter>
+            <parameter name="command_argument_3">&lt;%= @parameters['command_argument_3'] %&gt;</parameter>
+            <parameter name="command_argument_4">&lt;%= @parameters['command_argument_4'] %&gt;</parameter>
+            <parameter name="command_argument_5">&lt;%= @parameters['command_argument_5'] %&gt;</parameter>
+        </parameters>
+    </handler>
+    <results format="xml">
+        <result name="cli_response"/>
+    </results>
+</taskDefinition>

@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://bladelogic.com/2009/11/30" xmlns:clitunnelServiceNamespace="http://bladelogic.com/webservices/skeleton/clitunnel" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:cliFactoryNamespace="http://bladelogic.com/webservices/cli/factory/xsd" xmlns:clitunnelModelNamespace="http://bladelogic.com/webservices/model/clitunnel/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:bladelogicNamespace="http://bladelogic.com/2009/11/30" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:mfwUtilNamespace="http://bladelogic.com/webservices/mfw/util/xsd" xmlns:frameworkNamespace="http://bladelogic.com/webservices/framework/xsd" xmlns:appRemoteNamespace="http://bladelogic.com/webservices/app/remote/xsd">
+<wsdl:documentation>
+  clitunnelServiceNamespace: The namespace for the clitunnelService, which contains cliTunnel-specific elements.
+  clitunnelModelNamespace: The namespace for cliTunnelService model objects, such as Result (the command result object).
+  appRemoteNamespace: The namespace for remote application exceptions, such as BlRemoteException.
+  mfwUtilNamespace: The namespace for model framework exceptions.
+  bladelogicNamespace: The namespace that contains messages, bindings and SoapActions.
+  frameworkNamespace: The namespace for elements used by multiple services, such as generic exceptions.
+  wsdl: The WSDL namespace.
+  soap: The SOAP namespace.
+  xs: The XMLSchema namespace.
+  </wsdl:documentation>
+  <wsdl:types>
+    <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://bladelogic.com/webservices/skeleton/clitunnel">
+			<xs:import namespace="http://bladelogic.com/webservices/app/remote/xsd"/>
+			<xs:import namespace="http://bladelogic.com/webservices/cli/factory/xsd"/>
+			<xs:import namespace="http://bladelogic.com/webservices/model/clitunnel/xsd"/>
+			<xs:element name="BlRemoteException">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="BlRemoteException" nillable="true" type="appRemoteNamespace:BlRemoteException"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CommandLoadException">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="CommandLoadException" nillable="true" type="cliFactoryNamespace:CommandLoadException"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CommandNotFoundException">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="CommandNotFoundException" nillable="true" type="cliFactoryNamespace:CommandNotFoundException"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="executeCommandByParamList">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="nameSpace" nillable="true" type="xs:string"/>
+						<xs:element minOccurs="0" name="commandName" nillable="true" type="xs:string"/>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="commandArguments" nillable="true" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="executeCommandByParamListResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="return" nillable="true" type="clitunnelModelNamespace:Result"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="executeCommandByParamListAndAttachment">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="nameSpace" nillable="true" type="xs:string"/>
+						<xs:element minOccurs="0" name="commandName" nillable="true" type="xs:string"/>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="commandArguments" nillable="true" type="xs:string"/>
+						<xs:element minOccurs="0" name="dh" nillable="true" type="xs:base64Binary"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="executeCommandByParamListAndAttachmentResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="return" nillable="true" type="clitunnelModelNamespace:Result"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="executeCommandByParamString">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="nameSpace" nillable="true" type="xs:string"/>
+						<xs:element minOccurs="0" name="commandName" nillable="true" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="executeCommandByParamStringResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="return" nillable="true" type="clitunnelModelNamespace:Result"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="executeCommandUsingAttachments">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="nameSpace" nillable="true" type="xs:string"/>
+						<xs:element minOccurs="0" name="commandName" nillable="true" type="xs:string"/>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="commandArguments" nillable="true" type="xs:string"/>
+						<xs:element minOccurs="0" name="payload" nillable="true" type="clitunnelModelNamespace:ClientPayLoad"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="executeCommandUsingAttachmentsResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="return" nillable="true" type="clitunnelModelNamespace:Result"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:schema>
+    <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://bladelogic.com/webservices/model/clitunnel/xsd">
+			<xs:complexType name="Result">
+				<xs:sequence>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="attachment" nillable="true" type="xs:base64Binary"/>
+					<xs:element minOccurs="0" name="classInstance" type="xs:boolean"/>
+					<xs:element minOccurs="0" name="comments" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="error" nillable="true" type="xs:anyType"/>
+					<xs:element minOccurs="0" name="executionTime" type="xs:long"/>
+					<xs:element minOccurs="0" name="list" type="xs:boolean"/>
+					<xs:element minOccurs="0" name="memoryUsed" type="xs:long"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="realInputArguments" nillable="true" type="xs:anyType"/>
+					<xs:element minOccurs="0" name="returnValue" nillable="true" type="xs:anyType"/>
+					<xs:element minOccurs="0" name="returnValues" nillable="true" type="xs:anyType"/>
+					<xs:element minOccurs="0" name="success" type="xs:boolean"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ClientPayLoad">
+				<xs:sequence>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="argumentNameArray" nillable="true" type="xs:string"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="dataHandlerArray" nillable="true" type="xs:base64Binary"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="fileNameArray" nillable="true" type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+		</xs:schema>
+    <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://bladelogic.com/webservices/mfw/util/xsd">
+			<xs:import namespace="http://bladelogic.com/webservices/framework/xsd"/>
+			<xs:complexType name="BaseException">
+				<xs:complexContent>
+					<xs:extension base="frameworkNamespace:Exception">
+						<xs:sequence/>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:complexType name="BlException">
+				<xs:complexContent>
+					<xs:extension base="mfwUtilNamespace:BaseException">
+						<xs:sequence>
+							<xs:element minOccurs="0" name="localizedMessage" nillable="true" type="xs:string"/>
+						</xs:sequence>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+		</xs:schema>
+    <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://bladelogic.com/webservices/cli/factory/xsd">
+		<xs:import namespace="http://bladelogic.com/webservices/framework/xsd"/>
+			<xs:complexType name="CommandLoadException">
+				<xs:complexContent>
+					<xs:extension base="frameworkNamespace:Exception">
+						<xs:sequence/>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:complexType name="CommandNotFoundException">
+				<xs:complexContent>
+					<xs:extension base="frameworkNamespace:Exception">
+						<xs:sequence/>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+		</xs:schema>
+    <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://bladelogic.com/webservices/app/remote/xsd">
+		<xs:import namespace="http://bladelogic.com/webservices/mfw/util/xsd"/>
+			<xs:complexType name="BlRemoteException">
+				<xs:complexContent>
+					<xs:extension base="mfwUtilNamespace:BlException">
+						<xs:sequence/>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+		</xs:schema>
+    <xs:schema attributeFormDefault="qualified" targetNamespace="http://bladelogic.com/webservices/framework/xsd">
+			<xs:complexType name="Exception">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="Exception" nillable="true" type="xs:anyType"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="sessionId" type="xs:string"/>
+			<xs:element name="transactionId" type="xs:string"/>
+		</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="BlRemoteException">
+    <wsdl:part name="parameters" element="clitunnelServiceNamespace:BlRemoteException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="CommandNotFoundException">
+    <wsdl:part name="parameters" element="clitunnelServiceNamespace:CommandNotFoundException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sessionId">
+    <wsdl:part name="parameters" element="frameworkNamespace:sessionId">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="transactionId">
+    <wsdl:part name="parameters1" element="frameworkNamespace:transactionId">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="CommandLoadException">
+    <wsdl:part name="parameters" element="clitunnelServiceNamespace:CommandLoadException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="executeCommandByParamStringRequest">
+    <wsdl:part name="parameters" element="clitunnelServiceNamespace:executeCommandByParamString">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="executeCommandByParamListAndAttachmentResponse">
+    <wsdl:part name="parameters" element="clitunnelServiceNamespace:executeCommandByParamListAndAttachmentResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="executeCommandByParamListAndAttachmentRequest">
+    <wsdl:part name="parameters" element="clitunnelServiceNamespace:executeCommandByParamListAndAttachment">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="executeCommandByParamListRequest">
+    <wsdl:part name="parameters" element="clitunnelServiceNamespace:executeCommandByParamList">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="executeCommandByParamListResponse">
+    <wsdl:part name="parameters" element="clitunnelServiceNamespace:executeCommandByParamListResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="executeCommandUsingAttachmentsResponse">
+    <wsdl:part name="parameters" element="clitunnelServiceNamespace:executeCommandUsingAttachmentsResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="executeCommandByParamStringResponse">
+    <wsdl:part name="parameters" element="clitunnelServiceNamespace:executeCommandByParamStringResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="executeCommandUsingAttachmentsRequest">
+    <wsdl:part name="parameters" element="clitunnelServiceNamespace:executeCommandUsingAttachments">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="CLITunnelServicePortType">
+    <wsdl:operation name="executeCommandByParamList">
+      <wsdl:input message="bladelogicNamespace:executeCommandByParamListRequest">
+    </wsdl:input>
+      <wsdl:output message="bladelogicNamespace:executeCommandByParamListResponse">
+    </wsdl:output>
+      <wsdl:fault name="BlRemoteException" message="bladelogicNamespace:BlRemoteException">
+    </wsdl:fault>
+      <wsdl:fault name="CommandNotFoundException" message="bladelogicNamespace:CommandNotFoundException">
+    </wsdl:fault>
+      <wsdl:fault name="CommandLoadException" message="bladelogicNamespace:CommandLoadException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="executeCommandByParamString">
+      <wsdl:input message="bladelogicNamespace:executeCommandByParamStringRequest">
+    </wsdl:input>
+      <wsdl:output message="bladelogicNamespace:executeCommandByParamStringResponse">
+    </wsdl:output>
+      <wsdl:fault name="BlRemoteException" message="bladelogicNamespace:BlRemoteException">
+    </wsdl:fault>
+      <wsdl:fault name="CommandNotFoundException" message="bladelogicNamespace:CommandNotFoundException">
+    </wsdl:fault>
+      <wsdl:fault name="CommandLoadException" message="bladelogicNamespace:CommandLoadException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="executeCommandByParamListAndAttachment">
+      <wsdl:input message="bladelogicNamespace:executeCommandByParamListAndAttachmentRequest">
+    </wsdl:input>
+      <wsdl:output message="bladelogicNamespace:executeCommandByParamListAndAttachmentResponse">
+    </wsdl:output>
+      <wsdl:fault name="BlRemoteException" message="bladelogicNamespace:BlRemoteException">
+    </wsdl:fault>
+      <wsdl:fault name="CommandNotFoundException" message="bladelogicNamespace:CommandNotFoundException">
+    </wsdl:fault>
+      <wsdl:fault name="CommandLoadException" message="bladelogicNamespace:CommandLoadException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="executeCommandUsingAttachments">
+      <wsdl:input message="bladelogicNamespace:executeCommandUsingAttachmentsRequest">
+    </wsdl:input>
+      <wsdl:output message="bladelogicNamespace:executeCommandUsingAttachmentsResponse">
+    </wsdl:output>
+      <wsdl:fault name="BlRemoteException" message="bladelogicNamespace:BlRemoteException">
+    </wsdl:fault>
+      <wsdl:fault name="CommandNotFoundException" message="bladelogicNamespace:CommandNotFoundException">
+    </wsdl:fault>
+      <wsdl:fault name="CommandLoadException" message="bladelogicNamespace:CommandLoadException">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CLITunnelServiceSoap11Binding" type="bladelogicNamespace:CLITunnelServicePortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="executeCommandByParamList">
+      <soap:operation soapAction="bladelogicNamespace:executeCommandByParamList" style="document"/>
+      <wsdl:input>
+        <soap:header message="bladelogicNamespace:sessionId" part="parameters" use="literal" namespace="bladelogic">
+        </soap:header>
+        <soap:header message="bladelogicNamespace:transactionId" part="parameters1" use="literal" namespace="bladelogic">
+        </soap:header>
+	<soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="BlRemoteException">
+        <soap:fault name="BlRemoteException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="CommandNotFoundException">
+        <soap:fault name="CommandNotFoundException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="CommandLoadException">
+        <soap:fault name="CommandLoadException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="executeCommandByParamString">
+      <soap:operation soapAction="bladelogicNamespace:executeCommandByParamString" style="document"/>
+      <wsdl:input>
+        <soap:header message="bladelogicNamespace:sessionId" part="parameters" use="literal" namespace="bladelogicNamespace">
+        </soap:header>
+        <soap:header message="bladelogicNamespace:transactionId" part="parameters1" use="literal" namespace="bladelogicNamespace">
+        </soap:header>
+	<soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="BlRemoteException">
+        <soap:fault name="BlRemoteException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="CommandNotFoundException">
+        <soap:fault name="CommandNotFoundException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="CommandLoadException">
+        <soap:fault name="CommandLoadException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="executeCommandByParamListAndAttachment">
+      <soap:operation soapAction="bladelogicNamespace:executeCommandByParamListAndAttachment" style="document"/>
+      <wsdl:input>
+        <soap:header message="bladelogicNamespace:sessionId" part="parameters" use="literal" namespace="bladelogicNamespace">
+        </soap:header>
+        <soap:header message="bladelogicNamespace:transactionId" part="parameters1" use="literal" namespace="bladelogicNamespace">
+        </soap:header>
+	<soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="BlRemoteException">
+        <soap:fault name="BlRemoteException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="CommandNotFoundException">
+        <soap:fault name="CommandNotFoundException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="CommandLoadException">
+        <soap:fault name="CommandLoadException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="executeCommandUsingAttachments">
+      <soap:operation soapAction="bladelogicNamespace:executeCommandUsingAttachments" style="document"/>
+      <wsdl:input>
+        <soap:header message="bladelogicNamespace:sessionId" part="parameters" use="literal" namespace="bladelogicNamespace">
+        </soap:header>
+        <soap:header message="bladelogicNamespace:transactionId" part="parameters1" use="literal" namespace="bladelogicNamespace">
+        </soap:header>
+	<soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="BlRemoteException">
+        <soap:fault name="BlRemoteException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="CommandNotFoundException">
+        <soap:fault name="CommandNotFoundException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="CommandLoadException">
+        <soap:fault name="CommandLoadException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CLITunnelService">
+    <wsdl:port name="CLITunnelServiceHttpSoap11Endpoint" binding="bladelogicNamespace:CLITunnelServiceSoap11Binding">
+      <soap:address location="https://10.20.12.91:9843/services/CLITunnelService/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
