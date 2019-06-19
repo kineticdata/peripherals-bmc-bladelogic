@@ -1,0 +1,10 @@
+---
+repo-name: peripherals-bmc-bladelogic
+categories:
+- Cloud
+display-name: BMC BladeLogic
+manufacture: BMC
+product: Bladelogic
+description: Automated server management for better security and compliance.  Bladelogic
+  incorporates services to serve Threat remediation, Compliance, provisioning, configuration,
+  reporting, and patching.
